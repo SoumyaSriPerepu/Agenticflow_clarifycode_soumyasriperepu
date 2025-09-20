@@ -6,7 +6,7 @@
     "react-dom": "18.3.1"
   },
   
-export const config = {
-  runtime: 'nodejs18.x'
+"export const config" : {
+  "runtime": "nodejs18.x"
 }
 }
