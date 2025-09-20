@@ -1,0 +1,10 @@
+:root { --card:#11131a; --muted:#9aa3b2; --accent:#7dd3fc; }
+.card { background: var(--card); border: 1px solid #1b2130; border-radius: 14px; padding: 16px; }
+.input { width: 100%; padding: 12px 14px; border-radius: 12px; background:#0f1420; border:1px solid #1e2636; color:#e6e6e6; }
+.btn { padding: 10px 14px; border-radius: 10px; background:#1a2233; color:#e6e6e6; border:1px solid #27324a; cursor:pointer; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.row { display: flex; gap: 10px; }
+.code { white-space: pre; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background:#0f1420; border:1px solid #1e2636; border-radius: 12px; padding:14px; overflow:auto; }
+.kv { color: var(--muted); font-size: .95rem; }
+.q { color: #f5d0fe; } /* question */
+.a { color: #baf7b5; } /* answer */
