@@ -1,4 +1,4 @@
-import AgenticFlow from "@/components/AgenticFlow";
+import AgenticFlow from "../components/AgenticFlow";
 
 export default function Page() {
   return (
