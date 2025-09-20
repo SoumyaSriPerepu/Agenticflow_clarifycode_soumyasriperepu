@@ -21,13 +21,10 @@ Your reply:
 `.trim();
 
 // lib/prompts.ts
-export const CODE_TEMPLATE = `\
-# Clarify → Plan → Code → Test → Reflect
-# Write Python code only. No explanations.`;
+// lib/prompts.ts
+export const CODE_TEMPLATE = `# Clarify → Plan → Code → Test → Reflect`;
+export const ledgerLines = ["sense","clarify","plan","code","test","reflect"];
 
-export const ledgerLines = [
-  "sense", "clarify", "plan", "code", "test", "reflect"
-];
 
 
 Goal:
