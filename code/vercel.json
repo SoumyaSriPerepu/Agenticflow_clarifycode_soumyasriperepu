@@ -1,9 +1,0 @@
-{
-  "functions": {
-    "app/api/**": {
-      "runtime": "edge",
-      "maxDuration": 20,
-      "memory": 256
-    }
-  }
-}
