@@ -2,12 +2,12 @@
 
 ---
 
-## Past / Background  
+##  Background  
 Large Language Models (LLMs) have become very good at generating code from natural language descriptions. They are trained via pretraining on large corpora of text + code and then further fine-tuned with “instruction tuning” so that given a prompt in NL, they output code that matches. However, those instruction-tuned models typically assume the user’s prompt is sufficiently precise: they do not handle ambiguity well. In many real-world cases, problem descriptions are **ambiguously specified**, **incomplete**, or **inconsistent**, meaning a human engineer would first ask clarifying questions before writing code. Prior work includes benchmarks and datasets where clarifications are evaluated (e.g. HumanEvalComm), and some “agent” systems that wrap LLMs to ask questions as a separate step. But the intrinsic capability of the model itself to detect ambiguity and proactively ask isn’t reliably present.
 
 ---
 
-## Present / Problem Statement  
+## Problem Statement  
 The ClarifyCoder paper identifies this gap: when problem statements are ambiguous, current instruction-tuned code LLMs tend to *generate code immediately*, often speculating on missing parts. This leads to wrong behavior, misunderstandings, mismatches to user’s real intent, and sometimes safety or correctness issues.
 
 So the core problem is:
@@ -16,7 +16,7 @@ So the core problem is:
 
 ---
 
-## Math / Technical Process  
+##  Technical Process  
 
 Here is how the paper solves it:
 
@@ -40,14 +40,14 @@ Here is how the paper solves it:
 
    - They also experiment with combining the datasets: \(D_{\text{all}} = D_{\text{og}} \cup D_{\text{clarify}}\), with a ratio parameter \(r\) controlling how much clarify-aware data vs original data is in the mix. :contentReference[oaicite:2]{index=2}
 
-3. **Evaluation metrics / experimental setup**  
+3. **Evaluation metrics** 
    - Use benchmarks that include ambiguous/incomplete problem statements.  
    - Measure *communication rate* (how often the model asks clarification), *good question rate* (how often the question is meaningful/useful), and also standard code correctness metrics (e.g. pass@k, test pass rate) to ensure code quality does not degrade. :contentReference[oaicite:3]{index=3}  
    - Explore how varying the dataset ratio \(r\), or whether the loss is computed only over the answer or over both prompt + answer, affects trade-offs between clarify-awareness and code generation performance. :contentReference[oaicite:4]{index=4}
 
 ---
 
-## Conclusion / Findings & Outlook  
+## Conclusion 
 
 - **Findings:**  
   ClarifyCoder notably improves the model’s ability to *detect ambiguity* and *generate clarifying questions*, without severely harming code generation quality.  
