@@ -1,7 +1,1 @@
-{
-  "functions": {
-    "api/some-function.js": {
-      "runtime": "nodejs18.x" // ✅ Valid with version
-    }
-  }
-}
+
