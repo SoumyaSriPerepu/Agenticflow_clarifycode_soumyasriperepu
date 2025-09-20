@@ -1,5 +1,5 @@
 # GLOSSARY.md
-# Glossary — Agentic Code Generation & Clarify-Style Coding Systems (PhD Level)
+# Glossary — Agentic Code Generation & Clarify-Style Coding Systems 
 
 > A rigorous glossary for repositories that implement agentic, clarification-first code generation flows (e.g., “ClarifyFlow” / “Clarify-Coder”-style systems). Terms are grouped by *Modeling & Inference*, *Interaction & Control*, *Program Synthesis*, *Evaluation*, and *Safety & Ethics*.
 
