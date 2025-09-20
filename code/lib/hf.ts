@@ -1,3 +1,5 @@
+// lib/hf.ts
+
 export type GenParams = {
   max_new_tokens?: number;
   temperature?: number;
@@ -32,8 +34,7 @@ export async function generateText(
         return_full_text: true
       }
     }),
-    // Edge runtime ok
-    cache: "no-store"
+    cache: "no-store" // for edge runtime compatibility
   });
 
   if (!res.ok) {
@@ -41,14 +42,11 @@ export async function generateText(
     throw new Error(`HF error (${res.status}): ${text}`);
   }
 
-  // Typical HF JSON: [{ generated_text: "..." }]
   const json = await res.json();
   if (Array.isArray(json) && json.length && json[0].generated_text) {
     return String(json[0].generated_text);
   }
-  // Some models return string directly
   if (typeof json === "string") return json;
-  // Fallback: stringify
   return JSON.stringify(json);
 }
 
@@ -57,6 +55,6 @@ export function stripEcho(prompt: string, out: string) {
 }
 
 export function extractCode(raw: string): string {
-  const m = raw.match(/```(?:python)?\s*([\s\S]*?)```/i);
+  const m = raw.match(/``````/i);
   return (m ? m[1] : raw).trim();
 }
