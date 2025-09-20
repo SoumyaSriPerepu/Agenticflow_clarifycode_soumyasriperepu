@@ -20,11 +20,15 @@ If enough detail, reply exactly: DONE
 Your reply:
 `.trim();
 
-export const CODE_TEMPLATE = ({
-  goal,
-  facts
-}: { goal: string; facts: string[] }) => `
-You are ClarifyFlow: generate minimal, robust Python code for the user's goal.
+// lib/prompts.ts
+export const CODE_TEMPLATE = `\
+# Clarify → Plan → Code → Test → Reflect
+# Write Python code only. No explanations.`;
+
+export const ledgerLines = [
+  "sense", "clarify", "plan", "code", "test", "reflect"
+];
+
 
 Goal:
 ${goal.trim()}
