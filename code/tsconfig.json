@@ -12,13 +12,5 @@
     "strict": true,
     "resolveJsonModule": true,
     "noEmit": true
-  },
-
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    }
   }
 }
-
