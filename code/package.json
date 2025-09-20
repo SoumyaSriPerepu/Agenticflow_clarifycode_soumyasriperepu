@@ -7,6 +7,6 @@
   },
   
 export const config = {
-  runtime: 'nodejs18.x', // or 'edge' for Edge Runtime
+  runtime: 'nodejs18.x'
 }
 }
