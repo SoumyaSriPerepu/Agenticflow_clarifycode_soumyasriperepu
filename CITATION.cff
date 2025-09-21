@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below. If you build on the ClarifyCoder model, also cite the referenced paper."
+title: "ClarifyCoder: Clarification-Aware Coding Assistant (Demo)"
+version: "0.1.0"
+date-released: "2025-09-21"
+authors:
+  - family-names: "Perepu"
+    given-names: "Soumya Sri"
+repository-code: "https://github.com/SoumyaSriPerepu/Agenticflow_clarifycode_soumyasriperepu"
+url: "https://github.com/SoumyaSriPerepu/Agenticflow_clarifycode_soumyasriperepu"
+license: "MIT OR Apache-2.0"
+keywords:
+  - clarifycoder
+  - requirements-clarification
+  - software-engineering
+  - developer-tools
+  - fastapi
+  - streamlit
+
+preferred-citation:
+  type: software
+  title: "ClarifyCoder: Clarification-Aware Coding Assistant (Demo)"
+  authors:
+    - family-names: "Perepu"
+      given-names: "Soumya Sri"
+  year: 2025
+  url: "https://github.com/SoumyaSriPerepu/Agenticflow_clarifycode_soumyasriperepu"
+  version: "0.1.0"
+
+references:
+  - type: article
+    title: "ClarifyCoder: Clarification-Aware Fine-Tuning for Programmatic Problem Solving"
+    authors:
+      - family-names: "Wu"
+        given-names: "Jie JW"
+      - family-names: "Chaudhary"
+        given-names: "Manav"
+      - family-names: "Abrahamyan"
+        given-names: "Davit"
+      - family-names: "Khaku"
+        given-names: "Arhaan"
+      - family-names: "Wei"
+        given-names: "Anjiang"
+      - family-names: "Fard"
+        given-names: "Fatemeh H."
+    year: 2025
+    journal: "arXiv preprint"
+    notes: "arXiv:2504.16331"
+    identifiers:
+      - type: url
+        value: "https://arxiv.org/abs/2504.16331"
