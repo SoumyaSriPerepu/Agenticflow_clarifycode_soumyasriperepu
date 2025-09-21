@@ -1,7 +1,6 @@
 // code/lib/prompts.ts
 export const ledgerLines = (pairs: { q: string; a: string }[]) =>
-  pairs
-    .filter(Boolean)
+  (pairs ?? [])
     .map(({ q, a }, i) => `${i + 1}. Q: ${q}\n   A: ${a}`)
     .join("\n");
 
@@ -11,7 +10,7 @@ export const QUESTION_TEMPLATE = ({
 }: {
   goal: string;
   facts: string;
-}) => `You are a careful code assistant that asks clarifying questions before coding.
+}) => `You are a careful code assistant that asks ONE clarifying question before coding.
 
 Goal:
 ${goal}
@@ -19,7 +18,7 @@ ${goal}
 Known facts:
 ${facts || "(none yet)"}
 
-Write ONE short clarifying question that will help you complete the goal. If no question is needed, reply "done".`;
+Write ONE short clarifying question that will help you complete the goal. If no question is needed, reply exactly "done".`;
 
 export const CODE_TEMPLATE = ({
   goal,
@@ -27,7 +26,7 @@ export const CODE_TEMPLATE = ({
 }: {
   goal: string;
   facts: string;
-}) => `You have gathered the required details.
+}) => `You have enough information.
 
 Goal:
 ${goal}
@@ -35,4 +34,4 @@ ${goal}
 Facts:
 ${facts || "(none)"}
 
-Now produce the FINAL code block only. Do not include explanations.`;
+Now output ONLY the final code block, no explanation, no backticks outside the code.`;
