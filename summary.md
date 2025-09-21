@@ -51,10 +51,10 @@ Here is how the paper solves it:
 
 - **Findings:**  
   ClarifyCoder notably improves the model’s ability to *detect ambiguity* and *generate clarifying questions*, without severely harming code generation quality.  
-  For many settings, adding clarify-aware fine-tuning raises communication rate and good question rate significantly (absolute improvements of tens of percentage points), while pass@k or test pass rates remain comparable to baseline models. :contentReference[oaicite:5]{index=5}
+  For many settings, adding clarify-aware fine-tuning raises communication rate and good question rate significantly (absolute improvements of tens of percentage points), while pass@k or test pass rates remain comparable to baseline models.
 
 - **Trade-offs:**  
-  There is some trade between clarify-aware behavior and raw code generation quality: for example, when too much clarify-aware data or improper weighting is used, the model may “over-ask” or delay code generation unnecessarily. Also, loss choices (answer-only vs prompt+answer) affect metrics differently. :contentReference[oaicite:6]{index=6}
+  There is some trade between clarify-aware behavior and raw code generation quality: for example, when too much clarify-aware data or improper weighting is used, the model may “over-ask” or delay code generation unnecessarily. Also, loss choices (answer-only vs prompt+answer) affect metrics differently. 
 
 - **Outlook & Future Directions:**  
   The paper suggests that making clarify-awareness intrinsic to LLMs is valuable, moving beyond wrappers/agentic loops. It opens further questions such as: optimal data generation for ambiguity, how to calibrate when to ask vs generate, richer categories of ambiguity (types of missing information), integrating with human feedback, and exploring whether these methods generalize across domains, code complexity, and model scales.
