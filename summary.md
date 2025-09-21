@@ -22,7 +22,7 @@ Here is how the paper solves it:
 
 1. **Synthetic data generation, clarify-aware dataset**  
    - Start with existing code task datasets (e.g. APPS).  
-   - Automatically generate modified versions of tasks with ambiguous / inconsistent / incomplete statements (“ambiguous problem descriptions”) and pair them with “clarifying questions.” This yields a *clarify-aware dataset* \(D_{\text{clarify}}\). :contentReference[oaicite:0]{index=0}
+   - Automatically generate modified versions of tasks with ambiguous / inconsistent / incomplete statements (“ambiguous problem descriptions”) and pair them with “clarifying questions.” This yields a *clarify-aware dataset* 
 
 2. **Instruction tuning & loss functions**  
    - Have the original (fully specified) dataset \(D_{\text{og}}\), used for standard instruction tuning.  
