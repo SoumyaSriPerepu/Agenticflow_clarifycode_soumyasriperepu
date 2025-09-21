@@ -1,60 +1,43 @@
-// lib/hf.ts
-
-export type GenParams = {
+// code/lib/hf.ts
+type GenOpts = {
   max_new_tokens?: number;
   temperature?: number;
   top_p?: number;
 };
 
-const HF_ENDPOINT = "https://api-inference.huggingface.co/models";
+const HF_URL = (model: string) =>
+  `https://api-inference.huggingface.co/models/${encodeURIComponent(model)}`;
 
-const getToken = () => {
-  const t = process.env.HUGGINGFACE_TOKEN;
-  if (!t) throw new Error("Missing HUGGINGFACE_TOKEN");
-  return t;
-};
+export async function generateText(model: string, prompt: string, opts: GenOpts = {}) {
+  const token = process.env.HF_TOKEN;
+  if (!token) throw new Error("Missing HF_TOKEN env var");
 
-export async function generateText(
-  model: string,
-  prompt: string,
-  params: GenParams
-): Promise<string> {
-  const res = await fetch(`${HF_ENDPOINT}/${encodeURIComponent(model)}`, {
+  const res = await fetch(HF_URL(model), {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${getToken()}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
       inputs: prompt,
       parameters: {
-        max_new_tokens: params.max_new_tokens ?? 256,
-        temperature: params.temperature ?? 0.2,
-        top_p: params.top_p ?? 0.9,
-        return_full_text: true
+        max_new_tokens: opts.max_new_tokens ?? 128,
+        temperature: opts.temperature ?? 0.2,
+        top_p: opts.top_p ?? 0.9,
+        return_full_text: false
       }
-    }),
-    cache: "no-store" // for edge runtime compatibility
+    })
   });
 
   if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`HF error (${res.status}): ${text}`);
+    const t = await res.text();
+    throw new Error(`HF API error (${res.status}): ${t}`);
   }
 
-  const json = await res.json();
-  if (Array.isArray(json) && json.length && json[0].generated_text) {
-    return String(json[0].generated_text);
-  }
-  if (typeof json === "string") return json;
-  return JSON.stringify(json);
+  const data = (await res.json()) as Array<{ generated_text: string }>;
+  return (data?.[0]?.generated_text ?? "").toString();
 }
 
-export function stripEcho(prompt: string, out: string) {
-  return out.startsWith(prompt) ? out.slice(prompt.length) : out;
-}
-
-export function extractCode(raw: string): string {
-  const m = raw.match(/``````/i);
-  return (m ? m[1] : raw).trim();
-}
+// tiny helper: remove echoed prompt if the model includes it
+export const stripEcho = (prompt: string, out: string) =>
+  out.startsWith(prompt) ? out.slice(prompt.length) : out;
