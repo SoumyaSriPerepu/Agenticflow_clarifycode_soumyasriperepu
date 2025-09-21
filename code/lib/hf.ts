@@ -38,6 +38,5 @@ export async function generateText(model: string, prompt: string, opts: GenOpts 
   return (data?.[0]?.generated_text ?? "").toString();
 }
 
-// tiny helper: remove echoed prompt if the model includes it
 export const stripEcho = (prompt: string, out: string) =>
   out.startsWith(prompt) ? out.slice(prompt.length) : out;
