@@ -27,16 +27,7 @@ Here is how the paper solves it:
 2. **Instruction tuning & loss functions**  
    - Have the original (fully specified) dataset \(D_{\text{og}}\), used for standard instruction tuning.  
    - Fine-tune the model using both \(D_{\text{clarify}}\) (teach it to produce *questions when needed*) and \(D_{\text{og}}\) (teach it to produce correct code when prompt is sufficient).  
-   - Define losses:  
-     \[
-     L_{\text{og}} = -\sum_{\text{(p,a)}\in D_{\text{og}}} \log P(a \mid p)
-     \]  
-     for tasks where prompt \(p\) is already clear and code target \(a\) is correct.  
-     
-     \[
-     L_{\text{clarify}} = -\sum_{\text{(p_c, a_c)}\in D_{\text{clarify}}} \log P(a_c \mid p_c)
-     \]  
-     where \(p_c\) is an ambiguous prompt and \(a_c\) is the clarifying question. :contentReference[oaicite:1]{index=1}
+ 
 
    - They also experiment with combining the datasets: \(D_{\text{all}} = D_{\text{og}} \cup D_{\text{clarify}}\), with a ratio parameter \(r\) controlling how much clarify-aware data vs original data is in the mix. :contentReference[oaicite:2]{index=2}
 
