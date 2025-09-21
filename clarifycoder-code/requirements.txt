@@ -1,4 +1,0 @@
-fastapi>=0.110
-pydantic>=2.5
-python_version = "3.12"
-Flask==3.0.3
