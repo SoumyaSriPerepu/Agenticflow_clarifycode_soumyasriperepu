@@ -44,3 +44,14 @@ def heuristic_questions(problem: str, context: Optional[str]) -> List[str]:
 @app.post("/", response_model=ClarifyResponse)
 async def clarify(req: ClarifyRequest) -> ClarifyResponse:
     return ClarifyResponse(questions=heuristic_questions(req.problem, req.context))
+
+from http.server import BaseHTTPRequestHandler
+import json
+
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type","application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps({"ok": True, "message": "Hello from Vercel Python"}).encode("utf-8"))
+
