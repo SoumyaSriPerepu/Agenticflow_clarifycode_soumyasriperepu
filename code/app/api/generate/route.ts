@@ -1,8 +1,9 @@
+// code/app/api/generate/route.ts
 import { NextRequest } from "next/server";
-import { generateText, stripEcho, extractCode } from "@/lib/hf";
+import { generateText, stripEcho } from "@/lib/hf";
 import { CODE_TEMPLATE, ledgerLines } from "@/lib/prompts";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,18 +17,20 @@ export async function POST(req: NextRequest) {
     }
 
     const prompt = CODE_TEMPLATE({ goal, facts: ledgerLines(ledger || []) });
-    const model = process.env.HF_CODE_MODEL || "mistralai/Mistral-7B-Instruct-v0.3";
+    const model =
+      process.env.HF_CODE_MODEL ||
+      process.env.HF_QUESTION_MODEL ||
+      "mistralai/Mistral-7B-Instruct-v0.3";
 
-    const raw = await generateText(model, prompt, {
-      max_new_tokens: 300,
+    const out = await generateText(model, prompt, {
+      max_new_tokens: 512,
       temperature: 0.1,
       top_p: 0.9
     });
 
-    const trimmed = stripEcho(prompt, raw);
-    const code = extractCode(trimmed);
+    const code = stripEcho(prompt, out).trim();
     return Response.json({ code });
-  } catch (e: any) {
-    return Response.json({ error: String(e?.message || e) }, { status: 500 });
+  } catch (err: any) {
+    return Response.json({ error: String(err?.message || err) }, { status: 500 });
   }
 }
